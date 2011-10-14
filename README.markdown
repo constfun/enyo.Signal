@@ -51,4 +51,4 @@ In the rare cases where you need to name your enyo component different from the 
         this.$.say_hello.send("World");
     }
 
-When you send a signal, all components listening for that signal, regardless of where they are in the component hierarchy will fire their respective onReceive events.
+When you send a signal, all components listening for that signal, regardless of where they are in the component hierarchy, will fire their respective onReceive events.
