@@ -1,13 +1,21 @@
-Anytime you want to send or subscribe to a message, you include the same, Signal, component.
+### What is it?
 
-For messages that you intend to send you include a component like this one.
+_enyo.Signal_ is a pubsub component for the Enyo framework.
+
+
+### How do I use it?
+
+Whether you want to send or subscribe to a message, you include the same Signal component.
+
+For messages that you intend to send you include a component like this one:
 
     {
         name: 'say_hello',
         kind: 'Signal',
     }
 
-By default the Signal component will re-use its "name" as the name of the message. But in the rare cases where you need to name your component different from the message. You can supply the component name and message name separately.
+By default the Signal component will re-use its _name_ as the name of the message.
+In the rare cases where you need to name your component different from the message, you can supply the component name and message name explicitly.
 
     {
         name: 'mySignal',
@@ -15,7 +23,7 @@ By default the Signal component will re-use its "name" as the name of the messag
         message: 'say_hello',
     }
 
-And send the message like so:
+To send the message call the _send_ function on the Signal component and pass any arguments that you want to include with the message:
 
     sendTheSay: function() {
 
@@ -27,20 +35,20 @@ And send the message like so:
     }
 
 
-Subscribing to a message is exactly the same as subscribing to an event in enyo.
-You create a Signal component for the message you are interested in and listen for the onReceive event:
+To subscribe to a message, create a Signal component for the message that you are interested in and listen for the onReceive event:
 
     components:
-    ....
+    ...
     {
         name: 'say_hello',
         kind: 'Signal',
         onReceive: 'handleHello',
     }
-    ....
+    ...
 
     handleHello: function(sender, helloWhat) {
 
         enyo.log("Hello " + helloWhat + "!");
     }
 
+That's all!
