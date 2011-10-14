@@ -24,7 +24,7 @@ enyo.kind({
         name: 'enyo.Signal',
         kind: 'Component',
         published: {
-                message: ''
+                signal: ''
         },
         events: {
                 onReceive: ''
@@ -36,26 +36,26 @@ enyo.kind({
         importProps: function(inProps) {
                 this.inherited(arguments);
 
-                this.message = this.message || this.name;
+                this.signal = this.signal || this.name;
         },
 
         create: function() {
                 this.inherited(arguments);
 
-                // Initialize the channel for this message, if the channel doesn't exist yet.
+                // Initialize the channel for this signal, if the channel doesn't exist yet.
                 var channels = enyo.Signal._channels;
-                channels[ this.message ] || (channels[ this.message ] = []);
+                channels[ this.signal ] || (channels[ this.signal ] = []);
 
                 // Register a new receiver if this instance of Signal registered for the onReceive event.
                 if( this.onReceive ) {
 
-                        channels[ this.message ].push(this);
+                        channels[ this.signal ].push(this);
                 }
         },
 
         destroy: function() {
 
-                var receivers = enyo.Signal._channels[ this.message ];
+                var receivers = enyo.Signal._channels[ this.signal ];
                 if( !receivers ) {
                         return;
                 }
@@ -65,7 +65,7 @@ enyo.kind({
 
         send: function() {
 
-                var receivers = enyo.Signal._channels[ this.message ];
+                var receivers = enyo.Signal._channels[ this.signal ];
                 // For each receiver we want to call:
                 //      receiver.doReceive(...arguments passed into this 'send' function...).
                 this._invoke.apply({}, [receivers, 'doReceive'].concat(enyo.cloneArray(arguments)));
