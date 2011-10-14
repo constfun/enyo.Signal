@@ -37,7 +37,7 @@ To subscribe to this signal anywhere else in the application, create another Sig
         enyo.log("Hello " + helloWhat + "!");
     }
 
-By default the Signal component will re-use its enyo component _name_ as the name of the signal itself.  
+By default, the Signal component will re-use its enyo component _name_ as the name of the signal itself.  
 In the rare cases where you need to name your enyo component different from the signal, you can supply the component name and the signal name explicitly:
 
     {
@@ -48,7 +48,7 @@ In the rare cases where you need to name your enyo component different from the 
 
     sendTheSay: function() {
 
-        this.$.say_hello.send("World");
+        this.$.mySignal.send("World");
     }
 
 When you send a signal, all components listening for that signal, regardless of where they are in the component hierarchy, will fire their respective onReceive events.
